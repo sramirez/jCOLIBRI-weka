@@ -44,13 +44,13 @@ public class ICFSolvesFunction extends SolvesFunction
 		
 		knnConfig.setK(RetrievalResult.RETRIEVE_ALL);
 		Collection<RetrievalResult> orderedRetrievedCases = NNScoringMethod.evaluateSimilarity(cases, q, knnConfig);
-		Collection<CBRCase> neighbors = SelectCases.selectTopK(orderedRetrievedCases, knnConfig.getK());
+		Collection<RetrievalResult> neighbors = SelectCases.selectTopKRR(orderedRetrievedCases, knnConfig.getK());
 		
 		ClassificationOracle oracle = new BasicClassificationOracle();
 		boolean disagreeingCaseFound = false;
-		Iterator<CBRCase> iter = neighbors.iterator();
+		Iterator<RetrievalResult> iter = neighbors.iterator();
 		while(!disagreeingCaseFound && iter.hasNext())
-		{	CBRCase c = iter.next();
+		{	CBRCase c = iter.next().get_case();
 			ClassificationSolution cSol = (ClassificationSolution)c.getSolution();
 			if(oracle.isCorrectPrediction(cSol, q))
 			{	solveQ.add(c);

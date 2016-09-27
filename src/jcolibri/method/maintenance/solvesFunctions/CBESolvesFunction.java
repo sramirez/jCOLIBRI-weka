@@ -43,7 +43,7 @@ public class CBESolvesFunction extends SolvesFunction
 	 */
 	public void setCasesThatSolveAndMisclassifyQ(CBRCase q, Collection<CBRCase> cases, KNNClassificationConfig knnConfig)
 	{
-    	solveQ = new LinkedList<CBRCase>(); //It will always contain at least the query itself
+	    	solveQ = new LinkedList<CBRCase>(); //It will always contain at least the query itself
 		misclassifyQ = null;
 		
 		/* q is regarded to solve itself regardless of whether it is

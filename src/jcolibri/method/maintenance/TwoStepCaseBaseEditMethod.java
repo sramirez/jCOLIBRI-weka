@@ -44,7 +44,7 @@ public class TwoStepCaseBaseEditMethod extends AbstractCaseBaseEditMethod
 		System.out.println(method1.getClass().getName()+" Done, Deleted: " + deletedCases.size());
 		System.out.println();
 		for(CBRCase c: deletedCases)
-		    System.out.println(c.getID());
+		    System.out.println(c.getID() + " " + c.getSolution().toString());
 		cases.removeAll(deletedCases);
 
 		deletedCases.addAll(method2.retrieveCasesToDelete(cases, simConfig));
