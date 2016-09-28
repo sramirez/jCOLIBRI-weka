@@ -40,7 +40,8 @@ public class ICFSolvesFunction extends SolvesFunction
 	public void setCasesThatSolveAndMisclassifyQ(CBRCase q, Collection<CBRCase> cases, KNNClassificationConfig knnConfig)
 	{
 		solveQ = new LinkedList<CBRCase>();
-		misclassifyQ = null;
+		//misclassifyQ = null;
+		misclassifyQ = new LinkedList<CBRCase>();
 		
 		knnConfig.setK(RetrievalResult.RETRIEVE_ALL);
 		Collection<RetrievalResult> orderedRetrievedCases = NNScoringMethod.evaluateSimilarity(cases, q, knnConfig);
@@ -57,6 +58,7 @@ public class ICFSolvesFunction extends SolvesFunction
 			}
 			else
 			{	disagreeingCaseFound = true;
+				misclassifyQ.add(c);
 			}
 		}
 	}
